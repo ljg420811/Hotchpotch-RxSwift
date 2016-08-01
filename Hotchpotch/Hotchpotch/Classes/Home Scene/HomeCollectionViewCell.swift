@@ -8,13 +8,13 @@
 
 import UIKit
 
-typealias CellItem = (title: String, iconString: String)
-
 class HomeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
  
+    var appInformation: AppImformation?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,9 +22,11 @@ class HomeCollectionViewCell: UICollectionViewCell {
         self.imageLabel.clipsToBounds = true
     }
     
-    func setup(item: CellItem){
-        self.titleLabel.text = item.title
-        self.imageLabel.text = item.iconString
+    func setup(appInformation: AppImformation){
+        self.appInformation = appInformation
+        
+        self.titleLabel.text = appInformation.title
+        self.imageLabel.text = appInformation.iconString
         self.imageLabel.font = UIFont.fontAwesomeOfSize(35)
     }
 }

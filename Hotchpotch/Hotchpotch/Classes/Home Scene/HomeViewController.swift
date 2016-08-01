@@ -10,17 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+struct AppImformation {
+    let title : String
+    let iconString : String
+    let storyboardID : String
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     var cellItems = Observable.just(
         [
-            ("密码管理", String.fontAwesomeIconWithName(.Key)),
-            ("图片信息", String.fontAwesomeIconWithName(.Photo)),
-            ("密码管理", String.fontAwesomeIconWithName(.Key)),
-            ("密码管理", String.fontAwesomeIconWithName(.Key)),
-            ("密码管理", String.fontAwesomeIconWithName(.Key)),
+            AppImformation(title: "密码管理", iconString: String.fontAwesomeIconWithName(.Key), storyboardID: "PasswordManagementViewControllerID"),
+            AppImformation(title: "图片信息", iconString: String.fontAwesomeIconWithName(.Photo), storyboardID: "PasswordManagementViewControllerID"),
         ]
     )
     
@@ -38,19 +41,23 @@ extension HomeViewController
 {
     private func setupCollectionView()
     {
+        // Initial collection view cell
         self.cellItems
-            .bindTo(self.homeCollectionView.rx_itemsWithCellIdentifier("HomeCollectionViewCellID", cellType: HomeCollectionViewCell.self)){ (row: Int, item: CellItem, cell: HomeCollectionViewCell) in
+            .bindTo(self.homeCollectionView.rx_itemsWithCellIdentifier("HomeCollectionViewCellID", cellType: HomeCollectionViewCell.self)){ (row: Int, appInformation: AppImformation, cell: HomeCollectionViewCell) in
                 
-                cell.setup(item)
+                cell.setup(appInformation)
                 
             }
             .addDisposableTo(self.disposeBag)
         
+        // Collection view selected action
         self.homeCollectionView
-            .rx_modelSelected(CellItem)
-            .subscribeNext { (cellItem: CellItem) in
+            .rx_modelSelected(AppImformation)
+            .subscribeNext { (appInformation: AppImformation) in
                 
-                print(cellItem)
+                let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                let viewController = storyboard.instantiateViewControllerWithIdentifier(appInformation.storyboardID)
+                self.navigationController?.pushViewController(viewController, animated: true)
                 
             }
             .addDisposableTo(self.disposeBag)

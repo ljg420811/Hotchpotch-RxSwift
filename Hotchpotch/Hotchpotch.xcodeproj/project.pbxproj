@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3092DD31D4B59140037AB47 /* PasswordManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3092DD21D4B59140037AB47 /* PasswordManagementViewController.swift */; };
+		F3092DD51D4B60720037AB47 /* AddPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3092DD41D4B60720037AB47 /* AddPasswordViewController.swift */; };
+		F3543FD71D4F20F800DC9B72 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3543FD61D4F20F800DC9B72 /* Common.swift */; };
 		F3C7F1BB1D4B3905005392E1 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C7F1BA1D4B3905005392E1 /* RxCocoa.framework */; };
 		F3C7F1BC1D4B3905005392E1 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3C7F1BA1D4B3905005392E1 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3C7F1BE1D4B3911005392E1 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C7F1BD1D4B3911005392E1 /* RxBlocking.framework */; };
@@ -42,6 +45,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3092DD21D4B59140037AB47 /* PasswordManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordManagementViewController.swift; path = "Classes/Password Management Scene/PasswordManagementViewController.swift"; sourceTree = "<group>"; };
+		F3092DD41D4B60720037AB47 /* AddPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPasswordViewController.swift; path = "Classes/Password Management Scene/AddPasswordViewController.swift"; sourceTree = "<group>"; };
+		F3543FD61D4F20F800DC9B72 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = Classes/Common.swift; sourceTree = "<group>"; };
 		F3C7F1BA1D4B3905005392E1 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = RxSwift/RxCocoa.framework; sourceTree = "<group>"; };
 		F3C7F1BD1D4B3911005392E1 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = RxSwift/RxBlocking.framework; sourceTree = "<group>"; };
 		F3D047181D4AFD1A00D58EE3 /* Hotchpotch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hotchpotch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3092DD11D4B58D70037AB47 /* Password Management Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F3092DD21D4B59140037AB47 /* PasswordManagementViewController.swift */,
+				F3092DD41D4B60720037AB47 /* AddPasswordViewController.swift */,
+			);
+			name = "Password Management Scene";
+			sourceTree = "<group>";
+		};
 		F3D0470F1D4AFD1A00D58EE3 = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +130,9 @@
 		F3D047321D4B001400D58EE3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F3543FD61D4F20F800DC9B72 /* Common.swift */,
 				F3D047331D4B067C00D58EE3 /* Home Scene */,
+				F3092DD11D4B58D70037AB47 /* Password Management Scene */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -235,6 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3543FD71D4F20F800DC9B72 /* Common.swift in Sources */,
+				F3092DD31D4B59140037AB47 /* PasswordManagementViewController.swift in Sources */,
+				F3092DD51D4B60720037AB47 /* AddPasswordViewController.swift in Sources */,
 				F3D047451D4B2C2E00D58EE3 /* HomeCollectionViewCell.swift in Sources */,
 				F3D047411D4B07BD00D58EE3 /* FontAwesome.swift in Sources */,
 				F3D0471C1D4AFD1A00D58EE3 /* AppDelegate.swift in Sources */,
