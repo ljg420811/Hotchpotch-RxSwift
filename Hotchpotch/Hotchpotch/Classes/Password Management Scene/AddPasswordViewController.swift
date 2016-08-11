@@ -13,10 +13,12 @@ import RxCocoa
 class AddPasswordViewController: UIViewController {
 
     @IBOutlet weak var accountBackgroundView: UIView!
+    @IBOutlet weak var accountRequireIconLabel: UILabel!
     @IBOutlet weak var accountIconLabel: UILabel!
     @IBOutlet weak var accountInputTextField: UITextField!
     
     @IBOutlet weak var passwordBackgroundView: UIView!
+    @IBOutlet weak var passwordRequireIconLabel: UILabel!
     @IBOutlet weak var passwordIconLabel: UILabel!
     @IBOutlet weak var passwordInputTextField: UITextField!
     
@@ -34,6 +36,8 @@ class AddPasswordViewController: UIViewController {
     @IBOutlet weak var encryptionButton: UIButton!
     @IBOutlet weak var decryptionButton: UIButton!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -41,6 +45,7 @@ class AddPasswordViewController: UIViewController {
         
         self.setupUILayout()
         self.bindActions()
+        self.validateData()
     }
     
     // MARK:- Bind Actions
@@ -58,6 +63,32 @@ class AddPasswordViewController: UIViewController {
                 self?.orderLeftButton.unselected()
                 })
             .addDisposableTo(disposeBag)
+        
+        encryptionButton.rx_tap
+            .subscribeNext { [weak self] in
+                self?.encryptionButton.selected(hotchpotchColorRed)
+                self?.decryptionButton.unselected()
+            }.addDisposableTo(disposeBag)
+        
+        decryptionButton.rx_tap
+            .subscribeNext { [weak self] in
+                self?.decryptionButton.selected(hotchpotchColorRed)
+                self?.encryptionButton.unselected()
+            }.addDisposableTo(disposeBag)
+    }
+    
+    // MARK:- Validate data
+    func validateData() {
+        let accountVlied = accountInputTextField.rx_text
+            .map { string -> Bool in
+                print(string)
+                return string.characters.count >= 6
+            }
+            .shareReplay(1)
+        
+        accountVlied
+            .bindTo(saveButton.rx_enabled)
+            .addDisposableTo(disposeBag)
     }
     
     // MARK:- UI Layout
@@ -65,10 +96,12 @@ class AddPasswordViewController: UIViewController {
         // Setup account
         accountBackgroundView.colorfulCornerBorder(hotchpotchColorGray, cornerRadius: 5)
         accountIconLabel.awesomeFont(20, fontName: .User)
+        accountRequireIconLabel.awesomeFont(6, fontName: .Asterisk)
         
         // Setup password
         passwordBackgroundView.colorfulCornerBorder(hotchpotchColorGray, cornerRadius: 5)
         passwordIconLabel.awesomeFont(20, fontName: .Lock)
+        passwordRequireIconLabel.awesomeFont(6, fontName: .Asterisk)
         
         // Setup description
         descriptionBackgroundView.colorfulCornerBorder(hotchpotchColorGray, cornerRadius: 5)
